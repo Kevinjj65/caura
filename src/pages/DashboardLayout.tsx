@@ -1,20 +1,16 @@
+// =================================================================================
+// FILE: src/components/DashboardLayout.tsx
+// =================================================================================
+// The main layout with the sidebar. Uses <Outlet /> to render the active page.
 
 import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar'; // Assuming Sidebar is in the same folder
+import Sidebar from './Sidebar';
 
-// 2. The component signature is changed. It no longer accepts a `children` prop.
 const DashboardLayout = () => {
   return (
-    <div className="flex h-screen bg-gray-50 font-sans">
-      {/* The Sidebar component remains unchanged */}
+    <div className="flex h-screen bg-gray-100 font-sans">
       <Sidebar />
-
-      {/* Main content area */}
       <main className="flex-1 p-6 sm:p-8 lg:p-10 overflow-y-auto">
-        {/* 3. Use the <Outlet /> component here. React Router will automatically
-            render the matching child route (like <DashboardPage />) in this exact spot.
-            This replaces the need for the `children` prop.
-        */}
         <Outlet />
       </main>
     </div>
