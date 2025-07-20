@@ -1,5 +1,4 @@
 // FILE: src/components/Sidebar.tsx
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FiHome, FiCpu, FiGrid, FiUser, FiSettings, FiLogOut } from 'react-icons/fi';
 import { MdLocalOffer } from 'react-icons/md';
