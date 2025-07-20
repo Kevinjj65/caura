@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { FiHome, FiCpu, FiGrid, FiUser, FiSettings, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
 import { MdLocalOffer } from 'react-icons/md';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import supabase from '../lib/supabase';
 import toast from 'react-hot-toast';
 
