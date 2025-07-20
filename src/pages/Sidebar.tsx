@@ -7,11 +7,11 @@ import supabase from '../lib/supabase';
 import toast from 'react-hot-toast';
 const navLinks = [
   { to: '/dashboard', label: 'Dashboard', icon: <FiHome className="h-5 w-5" /> },
-  { to: '/iot-data', label: 'IoT Data', icon: <FiCpu className="h-5 w-5" /> },
-  { to: '/nfts', label: 'NFT Marketplace', icon: <MdLocalOffer className="h-5 w-5" /> },
-  { to: '/projects', label: 'Project Registry', icon: <FiGrid className="h-5 w-5" /> },
-  { to: '/profile', label: 'Company Profile', icon: <FiUser className="h-5 w-5" /> },
-  { to: '/admin', label: 'Admin Panel', icon: <FiSettings className="h-5 w-5" /> },
+  { to: '/dashboard/iot-data', label: 'IoT Data', icon: <FiCpu className="h-5 w-5" /> },
+  { to: '/dashboard/nfts', label: 'NFT Marketplace', icon: <MdLocalOffer className="h-5 w-5" /> },
+  { to: '/dashboard/projects', label: 'Project Registry', icon: <FiGrid className="h-5 w-5" /> },
+  { to: '/dashboard/profile', label: 'Company Profile', icon: <FiUser className="h-5 w-5" /> },
+  { to: '/dashboard/admin', label: 'Admin Panel', icon: <FiSettings className="h-5 w-5" /> },
 ];
 
 const signOut = async () => {
