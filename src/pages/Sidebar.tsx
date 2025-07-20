@@ -4,9 +4,9 @@ import { FiHome, FiCpu, FiGrid, FiUser, FiSettings, FiLogOut } from 'react-icons
 import { MdLocalOffer } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import supabase from '../lib/supabase';
-
+import toast from 'react-hot-toast';
 const navLinks = [
-  { to: '/', label: 'Dashboard', icon: <FiHome className="h-5 w-5" /> },
+  { to: '/dashboard', label: 'Dashboard', icon: <FiHome className="h-5 w-5" /> },
   { to: '/iot-data', label: 'IoT Data', icon: <FiCpu className="h-5 w-5" /> },
   { to: '/nfts', label: 'NFT Marketplace', icon: <MdLocalOffer className="h-5 w-5" /> },
   { to: '/projects', label: 'Project Registry', icon: <FiGrid className="h-5 w-5" /> },
@@ -15,8 +15,21 @@ const navLinks = [
 ];
 
 const signOut = async () => {
-  const { error } = await supabase.auth.signOut();
-  if (error) console.error('Error signing out:', error.message);
+  toast.promise(
+    supabase.auth.signOut(),
+    {
+      loading: 'Signing out...',
+      success: () => {
+        window.location.href = '/';
+        return 'Signed out successfully!';
+      },
+      error: (error) => `Sign out failed: ${error.message}`,
+    },
+    {
+      position: 'top-right',
+      duration: 4000,
+    }
+  );
 };
 
 const Sidebar = () => {

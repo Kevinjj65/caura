@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { FormEvent } from 'react';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
-
+import toast from 'react-hot-toast';
 // --- SUPABASE SETUP ---
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL';
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY';
@@ -23,25 +23,29 @@ const LoginPage: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const navigate=useNavigate();
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setMessage(null);
-        setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
-        const form = e.currentTarget;
-        const email = form.email.value;
-        const password = form.password.value;
+    const form = e.currentTarget;
+    const email = form.email.value;
+    const password = form.password.value;
 
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-        if (error) {
-            setMessage({ text: error.message, type: 'error' });
-        } else {
-            setMessage({ text: 'Login successful! Redirecting...', type: 'success' });
-            // In a real app, you'd use react-router-dom's useNavigate() here
-            setTimeout(() =>navigate('/dashboard'),1500);
+    await toast.promise(
+        supabase.auth.signInWithPassword({ email, password }),
+        {
+            loading: 'Logging in...',
+            success: 'Login successful! Redirecting...',
+            error: (err) => err?.message || 'Login failed',
         }
-        setLoading(false);
-    };
+    ).then(({ error }) => {
+        if (!error) {
+            setTimeout(() => navigate('/dashboard'), 1500);
+        }
+    });
+
+    setLoading(false);
+};
+
 
     const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
