@@ -27,8 +27,8 @@ const RegistryTag = ({ registry }: { registry: Project['registry'] }) => {
     Verra: 'bg-cyan-100 text-cyan-800',
     'Gold Standard': 'bg-amber-100 text-amber-800',
     ACR: 'bg-indigo-100 text-indigo-800',
-  };
-  return <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${colors[registry]}`}>{registry}</span>;
+  } as const;
+  return <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${colors[registry as keyof typeof colors]}`}>{registry}</span>;
 };
 
 // The main card component for displaying a single project
